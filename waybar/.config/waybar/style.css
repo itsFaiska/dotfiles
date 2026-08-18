@@ -1,0 +1,101 @@
+/* Paleta Everblush 
+ * Background: #141b1e
+ * Surface:    #232a2d
+ * Foreground: #dadada
+ * Green:      #8ccf7e
+ * Red:        #e57474
+ * Yellow:     #e5c76b
+ * Gray:       #3b4244 / #6c7a80
+ */
+
+* {
+    border: none;
+    border-radius: 0;
+    /* Alinhado com o Foot e o Fuzzel */
+    font-family: 'JetBrainsMono Nerd Font', monospace;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #141b1e;
+    color: #dadada;
+    /* Linha sutil para separar a barra do fundo */
+    border-bottom: 2px solid #232a2d;
+}
+
+/* --- Workspaces --- */
+#workspaces button {
+    padding: 0 12px;
+    background-color: transparent;
+    color: #6c7a80;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+    background-color: #232a2d;
+    color: #dadada;
+}
+
+#workspaces button.focused {
+    color: #8ccf7e;
+    border-bottom: 2px solid #8ccf7e;
+    background-color: #232a2d;
+}
+
+#workspaces button.urgent {
+    color: #e57474;
+    border-bottom: 2px solid #e57474;
+}
+
+/* --- Módulos --- */
+#clock,
+#battery,
+#backlight,
+#network,
+#pulseaudio,
+#mode,
+#tray {
+    padding: 0 12px;
+    color: #dadada;
+    background-color: #141b1e;
+}
+
+/* Destaque sutil no relógio para centralizar o foco */
+#clock {
+    color: #8ccf7e;
+    font-weight: bold;
+}
+
+/* Alertas de Bateria */
+#battery.warning {
+    color: #e5c76b;
+}
+
+#battery.critical:not(.charging) {
+    color: #e57474;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#mode {
+    background-color: #e5c76b;
+    color: #141b1e;
+    font-weight: bold;
+}
+
+#tray {
+    padding-right: 12px;
+}
+
+/* Animação para bateria crítica */
+@keyframes blink {
+    to {
+        background-color: #e57474;
+        color: #141b1e;
+    }
+}
