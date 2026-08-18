@@ -1,0 +1,130 @@
+## ============================================================================
+## MAKO CONFIGURATION - TEMA EVERBLUSH (MINIMALISTA)
+## Caminho: ~/.config/mako/config
+## ============================================================================
+
+## ----------------------------------------------------------------------------
+## 1. POSICIONAMENTO E LAYOUT
+## ----------------------------------------------------------------------------
+# Em qual camada da tela a notificação aparece (overlay garante que fique por cima de tudo)
+layer=overlay
+
+# Posição na tela (top-right, top-center, top-left, bottom-right, etc)
+anchor=top-right
+
+# Dimensões máximas da notificação
+width=350
+height=200
+
+# Margem externa (distância da borda da tela ou de outras notificações)
+# Formato: <top>,<right>,<bottom>,<left> (ou apenas um valor para todos)
+margin=16
+
+# Espaçamento interno (distância entre o texto/ícone e a borda da notificação)
+padding=16
+
+## ----------------------------------------------------------------------------
+## 2. APARÊNCIA GLOBAL E CORES (EVERBLUSH)
+## ----------------------------------------------------------------------------
+# Tipografia alinhada com o sistema
+font=JetBrainsMono Nerd Font 12
+
+# Cores de fundo e texto
+background-color=#141b1e
+text-color=#dadada
+
+# Configuração da Borda
+border-size=2
+border-color=#8ccf7e
+border-radius=0
+
+# Cor da barra de progresso (ex: alteração de volume/brilho via notificação)
+progress-color=over #232a2d
+
+## ----------------------------------------------------------------------------
+## 3. ÍCONES
+## ----------------------------------------------------------------------------
+# Habilitar ícones (1 = sim, 0 = não)
+icons=1
+
+# Tamanho máximo do ícone e posição (left, right, top, bottom)
+max-icon-size=48
+icon-location=left
+
+## ----------------------------------------------------------------------------
+## 4. FORMATAÇÃO E COMPORTAMENTO
+## ----------------------------------------------------------------------------
+# Suporte a formatação em HTML (negrito, itálico, cores)
+markup=1
+
+# Habilitar ações (botões) na notificação
+actions=1
+
+# Estrutura do texto da notificação. 
+# %a = app-name, %s = summary (título), %b = body (mensagem)
+format=<b>%s</b>\n<span color="#6c7a80">%a</span>\n\n%b
+
+# Tempo em milissegundos que a notificação fica na tela (5000 = 5 segundos)
+default-timeout=5000
+
+# Se '1', ignora requisições dos aplicativos para manter a notificação infinita
+ignore-timeout=0
+
+# Agrupar notificações do mesmo aplicativo
+group-by=app-name
+
+# Quantas notificações manter no histórico (acessível via `makoctl restore`)
+max-history=100
+
+# Ordem de exibição (+time = antigas primeiro, -time = novas primeiro)
+sort=-time
+
+## ----------------------------------------------------------------------------
+## 5. CONTROLES DO MOUSE
+## ----------------------------------------------------------------------------
+# O que cada clique faz ao interagir com a notificação
+# Valores: dismiss (fechar), invoke-default-action (abrir app), none
+on-button-left=invoke-default-action
+on-button-middle=none
+on-button-right=dismiss
+on-touch=invoke-default-action
+
+## ============================================================================
+## 6. REGRAS CONDICIONAIS (CRITÉRIOS)
+## ============================================================================
+
+# -- URGÊNCIA BAIXA (Notificações silenciosas/triviais) --
+[urgency=low]
+border-color=#232a2d
+default-timeout=3000
+format=<b>%s</b>\n%b
+
+# -- URGÊNCIA NORMAL --
+[urgency=normal]
+border-color=#8ccf7e
+
+# -- URGÊNCIA ALTA (Erros de sistema, bateria fraca, etc) --
+[urgency=high]
+border-color=#e57474
+background-color=#141b1e
+text-color=#e57474
+default-timeout=0
+ignore-timeout=1
+format=<b><span color="#e57474">⚠ ALERTA: %s</span></b>\n%b
+
+# -- NOTIFICAÇÕES DE MÍDIA (Spotify, Playerctl) --
+[app-name=Spotify]
+border-color=#8ccf7e
+default-timeout=4000
+format=<b>󰝚 %s</b>\n%b
+
+# -- NOTIFICAÇÕES DE ÁUDIO/BRILHO (Exemplo se usar scripts customizados) --
+[category=volume]
+format=<b>%s</b>\n%b
+default-timeout=2000
+
+# -- MODO "NÃO PERTURBE" (DND) --
+# Ative com o comando: `makoctl mode -a dnd`
+# Desative com: `makoctl mode -r dnd`
+[mode=dnd]
+invisible=1
