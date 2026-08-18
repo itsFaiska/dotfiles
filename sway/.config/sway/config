@@ -1,0 +1,160 @@
+### Variáveis
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $term foot
+set $menu rofi -show drun
+set $browser firefox
+set $file dolphin
+
+### Aparência e Minimalismo
+# Fonte do sistema alinhada com Waybar, Foot e Fuzzel
+font pango:JetBrainsMono Nerd Font 12
+
+# Remover barras de título das janelas e definir borda fina (2px)
+default_border pixel 2
+default_floating_border pixel 2
+titlebar_border_thickness 0
+
+# Gaps pequenos para visual limpo sem desperdiçar espaço
+gaps inner 6
+gaps outer 6
+
+# Ocultar gaps e bordas quando houver apenas uma janela (Ultra Minimalista)
+smart_gaps on
+smart_borders on
+
+### Cores (Tema Everblush - Sem transparência)
+# classe                 borda    fundo    texto    indicador filho_borda
+client.focused           #8ccf7e  #141b1e  #dadada  #67cbe7   #8ccf7e
+client.focused_inactive  #232a2d  #141b1e  #bdae93  #232a2d   #232a2d
+client.unfocused         #232a2d  #141b1e  #6c7a80  #232a2d   #232a2d
+client.urgent            #e57474  #141b1e  #dadada  #e57474   #e57474
+
+### Output e Wallpaper
+output * bg ~/Pictures/Wallpapers/wall.jpg fill
+
+### Toggle Wayabr
+bindsym $mod+Shift+space exec ~/.config/sway/toggle-waybar.sh
+
+### Input
+input type:touchpad {
+    dwt enabled
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+}
+
+input type:keyboard {
+    xkb_layout "br"
+}
+
+### Key bindings
+bindsym $mod+Return exec $term
+bindsym $mod+q kill
+bindsym $mod+w kill
+bindsym $mod+space exec $menu
+floating_modifier $mod normal
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Sair do Sway?' -B 'Sim' 'swaymsg exit'
+
+# Movimentação
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Workspaces
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# Layouts
+bindsym $mod+b splith
+bindsym $mod+v splitv
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+e exec $file
+bindsym $mod+f fullscreen
+bindsym $mod+a focus parent
+
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# Redimensionamento
+mode "resize" {
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Mídia / Iluminação
+bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+# Printscreen com seleção de área
+bindsym Print exec grim -g "$(slurp)" ~/Imagens/$(date +'%Y-%m-%d_%H%M%S').png
+
+bindsym $mod+Shift+Return exec $browser
+bindsym $mod+Escape exec wlogout
+bindsym XF86PowerOff exec wlogout
+bindsym $mod+Shift+b exec $term bluetui
+bindsym $mod+Shift+w exec $term impala
+bindsym $mod+Shift+N exec battery-notify
+
+bindsym $mod+Ctrl+y exec firefox https://youtube.com
+bindsym $mod+Ctrl+a exec firefox https://chatgpt.com
+bindsym $mod+Ctrl+w exec firefox https://web.whatsapp.com
+bindsym $mod+Ctrl+g exec firefox https://github.com
+
+### Inicialização Automática
+exec waybar
+exec mako
+
+include /etc/sway/config.d/*
