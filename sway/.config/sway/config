@@ -37,7 +37,7 @@ client.urgent            #e57474  #141b1e  #dadada  #e57474   #e57474
 output * bg ~/Pictures/Wallpapers/wall.jpg fill
 
 ### Toggle Wayabr
-bindsym $mod+Shift+space exec ~/.config/sway/toggle-waybar.sh
+bindsym $mod+Shift+Escape exec ~/.config/sway/toggle-waybar.sh
 
 ### Input
 input type:touchpad {
