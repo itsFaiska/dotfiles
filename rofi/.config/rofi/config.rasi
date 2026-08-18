@@ -1,0 +1,147 @@
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+
+    /* Nomes em maiúsculas dão um tom mais profissional e "tiling-wm" */
+    display-drun: "APPS";
+    display-run: "RUN";
+    display-window: "WINDOW";
+
+    drun-display-format: "{name}";
+    drun-match-fields: "name,generic,exec,categories";
+
+    hover-select: false;
+    scroll-method: 0;
+    matching: "normal";
+    sorting-method: "fzf";
+
+    font: "JetBrainsMono Nerd Font 11";
+}
+
+* {
+    /* --- Paleta de Cores Everblush --- */
+    bg:          #141b1e;
+    bg-alt:      #232a2d;
+    fg:          #dadada;
+    fg-alt:      #b3b9b8;
+
+    red:         #e57474;
+    green:       #8ccf7e;
+    cyan:        #6cbfbf;
+    blue:        #67b0e8;
+
+    /* Bordas e Destaques */
+    border-color: @cyan;
+    accent:       @green;
+
+    /* Configurações Globais (Reset) */
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+    border-radius: 0px; /* Garantindo cantos retos */
+    background-color: transparent; /* Elementos herdam o fundo da janela */
+}
+
+window {
+    width: 600px;
+
+    /* Fundo sólido (sem transparência) */
+    background-color: @bg;
+
+    /* Borda sólida para destacar no Sway */
+    border: 2px solid;
+    border-color: @border-color;
+    
+    padding: 20px;
+}
+
+mainbox {
+    spacing: 15px;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    spacing: 10px;
+    background-color: @bg-alt;
+    padding: 12px;
+    
+    /* Linha reta abaixo do input para separar da lista */
+    border: 0px 0px 2px 0px solid;
+    border-color: @accent;
+
+    children: [ prompt, entry ];
+}
+
+prompt {
+    text-color: @accent;
+    font: "JetBrainsMono Nerd Font Bold 11";
+}
+
+entry {
+    text-color: @fg;
+    placeholder: "Search...";
+    placeholder-color: @fg-alt;
+}
+
+listview {
+    lines: 8;
+    columns: 1;
+
+    fixed-height: false;
+    dynamic: true;
+    scrollbar: false;
+
+    spacing: 5px;
+}
+
+element {
+    orientation: horizontal;
+    padding: 10px;
+    spacing: 10px;
+}
+
+element-text {
+    text-color: inherit;
+    vertical-align: 0.5;
+}
+
+element-icon {
+    size: 24px;
+    background-color: transparent;
+}
+
+/* --- Estados dos Elementos --- */
+
+element normal.normal {
+    background-color: @bg;
+    text-color: @fg;
+}
+
+element alternate.normal {
+    background-color: @bg;
+    text-color: @fg;
+}
+
+element selected.normal {
+    /* Destaque em bloco sólido para o item selecionado */
+    background-color: @accent;
+    text-color: @bg;
+}
+
+element normal.active {
+    text-color: @cyan;
+}
+
+element selected.active {
+    background-color: @cyan;
+    text-color: @bg;
+}
+
+element normal.urgent {
+    text-color: @red;
+}
+
+element selected.urgent {
+    background-color: @red;
+    text-color: @bg;
+}
