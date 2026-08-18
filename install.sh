@@ -111,6 +111,7 @@ fi
 PACMAN_PACKAGES="
     foot
     mako
+    vim
     neovim
     rofi-wayland
     starship
@@ -119,6 +120,7 @@ PACMAN_PACKAGES="
     waybar
     zsh
     git
+    stow
     base-devel
 "
 
@@ -198,6 +200,7 @@ printf '\n'
 printf '%s\n' "Componentes instalados:"
 printf '  ✓ foot\n'
 printf '  ✓ mako\n'
+printf '  ✓ vim\n'
 printf '  ✓ neovim\n'
 printf '  ✓ rofi-wayland\n'
 printf '  ✓ starship\n'
@@ -205,6 +208,7 @@ printf '  ✓ sway\n'
 printf '  ✓ swaybg\n'
 printf '  ✓ waybar\n'
 printf '  ✓ zsh\n'
+printf '  ✓ stow\n'
 printf '  ✓ git\n'
 printf '  ✓ paru\n'
 
