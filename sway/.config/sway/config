@@ -139,19 +139,19 @@ bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
 # Printscreen com seleção de área
-bindsym Print exec grim -g "$(slurp)" ~/Imagens/$(date +'%Y-%m-%d_%H%M%S').png
+bindsym Print exec grim -g "$(slurp)" ~/Pictures/$(date +'%Y-%m-%d_%H%M%S').png
 
 bindsym $mod+Shift+Return exec $browser
 bindsym $mod+Escape exec wlogout
-bindsym XF86PowerOff exec wlogout
-bindsym $mod+Shift+b exec $term bluetui
-bindsym $mod+Shift+w exec $term impala
 bindsym $mod+Shift+N exec battery-notify
 
 bindsym $mod+Ctrl+y exec firefox https://youtube.com
 bindsym $mod+Ctrl+a exec firefox https://chatgpt.com
 bindsym $mod+Ctrl+w exec firefox https://web.whatsapp.com
 bindsym $mod+Ctrl+g exec firefox https://github.com
+
+bindsym $mod+Ctrl+1 exec $term impala
+bindsym $mod+Ctrl+2 exec $term bluetui
 
 ### Inicialização Automática
 exec waybar

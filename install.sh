@@ -111,7 +111,7 @@ fi
 PACMAN_PACKAGES="
     foot
     mako
-    vim
+    gvim
     neovim
     rofi-wayland
     starship
@@ -200,7 +200,7 @@ printf '\n'
 printf '%s\n' "Componentes instalados:"
 printf '  ✓ foot\n'
 printf '  ✓ mako\n'
-printf '  ✓ vim\n'
+printf '  ✓ gvim\n'
 printf '  ✓ neovim\n'
 printf '  ✓ rofi-wayland\n'
 printf '  ✓ starship\n'
